@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:replace="menu.inc::top_nav"></div>
+
+<br />
+
+<h1>Inserted data</h1>
+Database: <span th:text="@{${source.host} + ':' + ${source.port} + '/' + ${source.database}}"></span>
+<br />
+User: <span th:text="${source.user}"></span>
+<br />
+Password: <span>**************</span>
+
+</body>
+</html>
