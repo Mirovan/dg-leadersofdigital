@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Index</h1>
+
+
+<div th:replace="menu.inc::top_nav"></div>
+
+<ul th:each="item: ${list}">
+    <li th:text="${item}"></li>
+</ul>
+
+</body>
+</html>
