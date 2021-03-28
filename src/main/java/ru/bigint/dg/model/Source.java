@@ -1,9 +1,16 @@
 package ru.bigint.dg.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "dg_source")
 public class Source {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String host;
     private Integer port;
-    private String user;
+    private String username;
     private String password;
     private String database;
 
@@ -11,12 +18,20 @@ public class Source {
         super();
     }
 
-    public Source(String host, Integer port, String user, String password, String database) {
+    public Source(String host, Integer port, String username, String password, String database) {
         this.host = host;
         this.port = port;
-        this.user = user;
+        this.username = username;
         this.password = password;
         this.database = database;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getHost() {
@@ -35,12 +50,12 @@ public class Source {
         this.port = port;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

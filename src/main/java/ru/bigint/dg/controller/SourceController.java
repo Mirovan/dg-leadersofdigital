@@ -1,13 +1,24 @@
 package ru.bigint.dg.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ru.bigint.dg.model.Source;
+import ru.bigint.dg.service.SourceService;
 
 @RequestMapping("/source")
 @Controller
 public class SourceController {
+
+    private final SourceService sourceService;
+
+    public SourceController(SourceService sourceService) {
+        this.sourceService = sourceService;
+    }
+
 
     @GetMapping("/list/")
     public ModelAndView index() {
@@ -31,10 +42,15 @@ public class SourceController {
 
     @PostMapping(value = "/add/")
     public ModelAndView addPost(@ModelAttribute Source source) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("source", source);
-        modelAndView.setViewName("source/complete");
+        Source res = sourceService.add(source);
 
+        ModelAndView modelAndView = new ModelAndView();
+        if (res != null) {
+            modelAndView.addObject("source", res);
+            modelAndView.setViewName("source/complete");
+        } else {
+            //some error
+        }
         return modelAndView;
     }
 
