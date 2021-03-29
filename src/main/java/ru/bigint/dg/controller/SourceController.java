@@ -9,6 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 import ru.bigint.dg.model.Source;
 import ru.bigint.dg.service.SourceService;
 
+import java.util.List;
+
 @RequestMapping("/source")
 @Controller
 public class SourceController {
@@ -20,10 +22,12 @@ public class SourceController {
     }
 
 
-    @GetMapping("/list/")
+    @GetMapping("/")
     public ModelAndView index() {
+        List<Source> list = sourceService.list();
         ModelAndView modelAndView = new ModelAndView();
-
+        modelAndView.addObject("list", list);
+        modelAndView.setViewName("source/list");
         return modelAndView;
     }
 
@@ -35,7 +39,6 @@ public class SourceController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("source", source);
         modelAndView.setViewName("source/add");
-
         return modelAndView;
     }
 

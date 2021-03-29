@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:include="inc/head.inc::head"></head>
 <body>
 
-<h1>Index</h1>
+<div th:replace="inc/menu.inc::top_nav"></div>
 
+<div class="container">
+    <h1>Index</h1>
+</div>
 
-<div th:replace="menu.inc::top_nav"></div>
-
-<ul th:each="item: ${list}">
-    <li th:text="${item}"></li>
-</ul>
+<div class="container">
+    Hello, go to <a href="/source/">Sources</a>
+</div>
 
 </body>
 </html>

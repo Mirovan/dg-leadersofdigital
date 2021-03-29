@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:include="inc/head.inc::head"></head>
 <body>
 
-<h1>Add source</h1>
+<div th:replace="inc/menu.inc::top_nav"></div>
 
+<div class="container">
+    <h1>Add sources</h1>
+</div>
 
-<div th:replace="menu.inc::top_nav"></div>
-
-<form action="/source/add/" th:object="${source}" method="post">
-    <div class="form-group mx-sm-3 mb-2">
-        Host:
-        <input type="text" th:field="*{host}" />
-    </div>
-    <div class="form-group mx-sm-3 mb-2">
-        Port:
-        <input type="text" th:field="*{port}" />
-    </div>
-    <div class="form-group mx-sm-3 mb-2">
-        Database:
-        <input type="text" th:field="*{database}" />
-    </div>
-    <div class="form-group mx-sm-3 mb-2">
-        User:
-        <input type="text" th:field="*{username}" />
-    </div>
-    <div class="form-group mx-sm-3 mb-2">
-        Password:
-        <input type="text" th:field="*{password}" />
-    </div>
-    <div class="btn btn-primary mb-2">
-        <input type="submit" />
-    </div>
-</form>
+<div class="container">
+    <form action="/source/add/" th:object="${source}" method="post">
+        <div class="mb-3">
+            <label class="form-label">Host</label>
+            <input type="text" th:field="*{host}" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Port</label>
+            <input type="text" th:field="*{port}" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Database</label>
+            <input type="text" th:field="*{database}" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="text" th:field="*{username}" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="text" th:field="*{password}" class="form-control" />
+        </div>
+        <div class="btn btn-primary mb-2">
+            <input type="submit" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
 
 </body>
 </html>

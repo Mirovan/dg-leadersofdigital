@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:include="inc/head.inc::head"></head>
+<body>
+
+<div th:replace="inc/menu.inc::top_nav"></div>
+
+<div class="container">
+    <h1>Sources</h1>
+</div>
+
+<div class="container">
+    <a href="/source/add/" class="btn btn-outline-primary btn-sm">Add Source</a>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Database</th>
+            <th scope="col">Sync</th>
+        </tr>
+        </thead>
+        <tbody th:each="item: ${list}">
+        <tr>
+            <th scope="row" th:text="${item.id}"></th>
+            <td th:text="@{${item.host} + ':' + ${item.port} + '/' + ${item.database}}"></td>
+            <td><a th:href="@{'/source/sync/' + ${item.id} + '/'}">Sync</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
