@@ -1,0 +1,37 @@
+version: "3.1"
+services:
+
+  database:
+    image: "postgres" # use latest official postgres version
+#      env_file:
+#        - migration/database.env # configure postgres
+    ports:
+      - "15432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dg
+      PGDATA: /var/lib/postgresql/data
+    restart: always
+
+  migration-app:
+    image: "liquibase/liquibase"
+    build:
+      context: ./migration
+    environment:
+#      - LIQUIBASE_CHANGELOG=${LIQUIBASE_CHANGELOG}
+#      - LIQUIBASE_URL=jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+#      - LIQUIBASE_USERNAME=${POSTGRES_USER}
+#      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
+      - LIQUIBASE_CHANGELOG=${LIQUIBASE_CHANGELOG}
+      - LIQUIBASE_URL=jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+      - LIQUIBASE_USERNAME=${POSTGRES_USER}
+      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
+
+
+#  backend-app:
+#    image: my-springboot-app
+#    build:
+#      context: ./backend
+#    depends_on:
+#      - database
