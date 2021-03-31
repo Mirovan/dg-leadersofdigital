@@ -1,6 +1,6 @@
 FROM liquibase/liquibase:latest
 
-#ENV LIQUIBASE_URL=jdbc:postgresql://172.21.33.81:5432/dg
+#ENV LIQUIBASE_URL=jdbc:postgresql://127.0.0.1:5432/dg
 #ENV LIQUIBASE_USERNAME=postgres
 #ENV LIQUIBASE_PASSWORD=postgres
 #ENV LIQUIBASE_CHANGELOG=./db.changelog.xml
