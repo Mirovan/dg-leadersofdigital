@@ -21,7 +21,7 @@ services:
       - database
 
   backend-app:
-    image: my-springboot-app
+    image: dg-backend-app
     build:
       context: ./backend
     ports:

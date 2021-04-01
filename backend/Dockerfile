@@ -1,7 +1,11 @@
 FROM adoptopenjdk/openjdk11:jre-11.0.6_10-alpine
+FROM maven:3.6.3-jdk-11-openj9
 
-# copy the packaged jar file into our docker image
-COPY target/backend-0.0.1-SNAPSHOT.jar /dg-app.jar
+WORKDIR /app
+COPY ./pom.xml /app
+COPY ./src /app/src
 
-# set the startup command to execute the jar
-CMD ["java", "-jar", "/dg-app.jar"]
+RUN mvn clean package
+
+WORKDIR /app/target
+CMD ["java", "-jar", "/app/target/backend-0.0.1-SNAPSHOT.jar"]
